@@ -1,3 +1,87 @@
+# Smart Factory – Data Warehouse Module
+
+A mini digital factory simulator ("Smart Factory") built as a team project during a **summer internship focused on Java backend development**. The system is split into **8 functional modules** that communicate through events. This repository contains the full project, and my contribution was the **Data Warehouse module**.
+
+## About the Project
+
+Smart Factory simulates the operation of a factory: the different modules (production, vehicles, and so on) generate events as the factory runs. The Data Warehouse module collects all of these events, stores them, and makes them available through reports and REST APIs.
+
+The project was developed in a team following **Agile** methodology, with sprints and daily stand-ups.
+
+## My Contribution: Data Warehouse Module
+
+Together with a teammate (**[Colleague's Name]**), I worked on the Data Warehouse module. My responsibilities were:
+
+- **Kafka consumers**: implemented consumers that ingest the events produced by the other factory modules
+- **Data persistence**: stored the data in **PostgreSQL**, with schema migrations managed through **Flyway**
+- **REST API**: built endpoints with **Quarkus** to expose data and reports, documented with **Swagger / OpenAPI**
+- **Reporting features**: implemented reports such as the **vehicle timeline** and the **digital twin**, using the **Repository** and **Service** patterns
+- **Architecture**: followed the **ECB (Entity-Control-Boundary)** pattern to keep responsibilities clearly separated
+- **Monitoring, debugging and optimization** of the application
+
+## Tech Stack
+
+| Area | Technologies |
+|---|---|
+| Language | Java |
+| Framework | Quarkus |
+| Messaging | Apache Kafka |
+| Database | PostgreSQL |
+| Migrations | Flyway |
+| API docs | Swagger / OpenAPI |
+| Build | Maven |
+| Containers | Docker |
+| CI/CD | [e.g. GitLab CI / GitHub Actions / Jenkins] |
+| IDE | IntelliJ IDEA |
+
+## Architecture
+
+The module follows the **ECB (Entity-Control-Boundary)** pattern:
+
+- **Boundary**: REST resources and Kafka consumers, the entry points into the module
+- **Control**: services holding the business and reporting logic
+- **Entity**: domain entities and repositories for database access
+
+```
+Other factory modules ──► Kafka ──► Kafka consumers ──► Services ──► Repositories ──► PostgreSQL
+                                                             ▲
+                                              REST API (Swagger) ┘
+```
+
+## Features
+
+- Consumption and storage of events from all factory modules
+- Versioned database schema through Flyway migrations
+- REST endpoints for querying stored data
+- **Vehicle timeline**: the history of events for a given vehicle
+- **Digital twin**: a view of the current state of factory entities
+- Interactive API documentation via Swagger UI
+
+
+### Prerequisites
+
+- Java [17/21]
+- Maven
+- Docker and Docker Compose
+
+## What I Learned
+
+- Building event-driven systems with Kafka
+- Designing REST APIs and documenting them with OpenAPI
+- Managing database schema evolution with Flyway
+- Structuring code with ECB, Repository and Service patterns
+- Working in an Agile team, with sprints, daily stand-ups and CI/CD
+
+## Team
+
+This was a team project with contributions from multiple modules. The Data Warehouse module was developed by me and a team member.
+
+## Notes
+
+This project was developed for educational purposes during a summer internship.
+
+..............................................................................................................................................................
+
 # Smart Factory Platform
 
 Event-driven microservice platform (8 services) communicating over Apache Kafka, each owning a
